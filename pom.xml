@@ -11,7 +11,8 @@
 	<groupId>it1.exam</groupId>
 	<artifactId>mentoring</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>mentoring</name>
+    <packaging>pom</packaging>
+    <name>mentoring</name>
 	<description>Demo project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -20,7 +21,10 @@
 	<developers>
 		<developer/>
 	</developers>
-	<scm>
+    <modules>
+        <module>lib</module>
+    </modules>
+    <scm>
 		<connection/>
 		<developerConnection/>
 		<tag/>
@@ -65,18 +69,6 @@
 							<artifactId>lombok</artifactId>
 						</path>
 					</annotationProcessorPaths>
-				</configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
-				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.projectlombok</groupId>
-							<artifactId>lombok</artifactId>
-						</exclude>
-					</excludes>
 				</configuration>
 			</plugin>
 		</plugins>
