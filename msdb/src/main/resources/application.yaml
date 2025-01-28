@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/it1-exam
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  flyway:
+    url: jdbc:postgresql://localhost:5432/it1-exam
+    user: postgres
+    password: postgres
+    baselineOnMigrate: true
+    baselineVersion: 0
+  jpa:
+    hibernate:
+      ddl-auto: validate
