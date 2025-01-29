@@ -1,0 +1,2 @@
+bd-service:
+  host: http://localhost:8080
