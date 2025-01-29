@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: mso
+
+server:
+  port: 8085
