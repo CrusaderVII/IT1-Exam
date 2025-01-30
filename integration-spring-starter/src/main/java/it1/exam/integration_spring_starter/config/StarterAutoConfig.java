@@ -3,6 +3,7 @@ package it1.exam.integration_spring_starter.config;
 import it1.exam.integration_spring_starter.service.AgreementRequestService;
 import it1.exam.integration_spring_starter.service.impl.AgreementServiceRequestImpl;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnClass;
@@ -12,6 +13,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.reactive.function.client.WebClient;
 
+@Slf4j
 @Configuration
 @EnableConfigurationProperties(ConfigProperties.class)
 @ConditionalOnClass(AgreementRequestService.class)
@@ -23,7 +25,7 @@ public class StarterAutoConfig {
     @Bean
     @ConditionalOnMissingBean
     public WebClient webClient() {
-        WebClient webClient = WebClient.create(properties.getHost());
+        WebClient webClient = WebClient.create("http://localhost:8080");
         return webClient;
     }
 
