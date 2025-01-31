@@ -1,5 +1,6 @@
 package it1.exam.mso.controller;
 
+import it1.exam.mentoring.dto.AgreementDto;
 import it1.exam.mentoring.model.Agreement;
 import it1.exam.mso.service.AgreementService;
 import lombok.RequiredArgsConstructor;
@@ -10,21 +11,21 @@ import java.util.UUID;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/exam")
+@RequestMapping("/exam/agreement")
 @Slf4j
-public class MainController {
+public class AgreementController {
 
     private final AgreementService service;
 
-    @GetMapping("/agreement/get/{id}")
+    @GetMapping("/agreement/{id}")
     public Agreement getAgreement(@PathVariable UUID id) {
         log.info("[INFO]:[MAIN-CONTROLLER]: in get by id method");
         return service.getAgreementById(id);
     }
 
-    @PostMapping("/agreement/save")
-    public Agreement saveAgreement(@RequestBody Agreement newAgreement) {
+    @PostMapping("/agreement")
+    public Agreement saveAgreement(@RequestBody AgreementDto newAgreement) {
         log.info("[INFO]:[MAIN-CONTROLLER]: in save method");
-        return service.saveNewAgreement(newAgreement);
+        return service.saveAgreement(newAgreement);
     }
 }

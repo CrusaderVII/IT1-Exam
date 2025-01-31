@@ -1,12 +1,13 @@
 package it1.exam.mso.service.impl;
 
 import it1.exam.integration_spring_starter.service.AgreementRequestService;
+import it1.exam.mentoring.dto.AgreementDto;
 import it1.exam.mentoring.model.Agreement;
-import it1.exam.mentoring.model.Document;
 import it1.exam.mso.service.AgreementService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,12 +17,22 @@ public class AgreementServiceImpl implements AgreementService {
     private final AgreementRequestService agreementRequestService;
 
     @Override
+    public List<Agreement> getAllAgreements() {
+        return agreementRequestService.getForAllAgreements();
+    }
+
+    @Override
     public Agreement getAgreementById(UUID id) {
         return agreementRequestService.getForAgreementById(id);
     }
 
     @Override
-    public Agreement saveNewAgreement(Agreement newAgreement) {
+    public Agreement saveAgreement(AgreementDto newAgreement) {
         return agreementRequestService.postForAgreement(newAgreement);
+    }
+
+    @Override
+    public void deleteAgreementById(UUID id) {
+        agreementRequestService.deleteForAgreementById(id);
     }
 }
