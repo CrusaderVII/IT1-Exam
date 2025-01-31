@@ -1,7 +1,9 @@
 package it1.exam.integration_spring_starter.config;
 
 import it1.exam.integration_spring_starter.service.AgreementRequestService;
+import it1.exam.integration_spring_starter.service.DocumentRequestService;
 import it1.exam.integration_spring_starter.service.impl.AgreementServiceRequestImpl;
+import it1.exam.integration_spring_starter.service.impl.DocumentRequestServiceImpl;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
@@ -33,5 +35,11 @@ public class StarterAutoConfig {
     @ConditionalOnMissingBean
     public AgreementRequestService agreementRequestService() {
         return new AgreementServiceRequestImpl(webClient());
+    }
+
+    @Bean
+    @ConditionalOnMissingBean
+    public DocumentRequestService documentRequestService() {
+        return new DocumentRequestServiceImpl(webClient());
     }
 }
