@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -15,17 +16,25 @@ import java.util.UUID;
 @Slf4j
 public class AgreementController {
 
-    private final AgreementService service;
+    private final AgreementService agreementService;
 
-    @GetMapping("/agreement/{id}")
-    public Agreement getAgreement(@PathVariable UUID id) {
-        log.info("[INFO]:[MAIN-CONTROLLER]: in get by id method");
-        return service.getAgreementById(id);
+    @GetMapping
+    public List<Agreement> getAllAgreements() {
+        return agreementService.getAllAgreements();
     }
 
-    @PostMapping("/agreement")
+    @GetMapping("/{id}")
+    public Agreement getAgreement(@PathVariable UUID id) {
+        return agreementService.getAgreementById(id);
+    }
+
+    @PostMapping()
     public Agreement saveAgreement(@RequestBody AgreementDto newAgreement) {
-        log.info("[INFO]:[MAIN-CONTROLLER]: in save method");
-        return service.saveAgreement(newAgreement);
+        return agreementService.saveAgreement(newAgreement);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteAgreementById(@PathVariable UUID id) {
+        agreementService.deleteAgreementById(id);
     }
 }
