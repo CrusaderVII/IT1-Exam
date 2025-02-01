@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor
@@ -20,13 +21,13 @@ public class AgreementServiceImpl implements AgreementService {
 
     @Override
     public List<Agreement> getAllAgreements() {
-        kafkaSender.send("get all agreements");
+        CompletableFuture<Void> sendKafkaMessage = CompletableFuture.runAsync(() -> kafkaSender.send("get all agreements"));
         return agreementRequestService.getForAllAgreements();
     }
 
     @Override
     public Agreement getAgreementById(UUID id) {
-        kafkaSender.send("get agreement by id");
+        CompletableFuture<Void> sendKafkaMessage = CompletableFuture.runAsync(() -> kafkaSender.send("get agreement by id"));
         return agreementRequestService.getForAgreementById(id);
     }
 

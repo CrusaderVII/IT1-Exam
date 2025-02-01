@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.concurrent.CompletableFuture;
 
 @Service
 @RequiredArgsConstructor
@@ -22,13 +23,13 @@ public class DocumentServiceImpl implements DocumentService {
 
     @Override
     public List<Document> getAllDocuments() {
-        kafkaSender.send("get all documents");
+        CompletableFuture<Void> sendKafkaMessage = CompletableFuture.runAsync(() -> kafkaSender.send("get all documents"));
         return documentRequestService.getForAllDocuments();
     }
 
     @Override
     public Document getDocumentById(UUID id) {
-        kafkaSender.send("get document by id");
+        CompletableFuture<Void> sendKafkaMessage = CompletableFuture.runAsync(() -> kafkaSender.send("get document by id"));
         return documentRequestService.getForDocumentById(id);
     }
 
